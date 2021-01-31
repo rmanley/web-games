@@ -460,10 +460,11 @@ window.onload = () => {
         }; 
         window.addEventListener(GAME_OVER, init);
         displayPlayButton(context, canvas);
-        canvas.addEventListener('click', function initGame() {
+        const playEvent = isiOS() ? 'touchstart' : 'click';
+        canvas.addEventListener(playEvent, function initGame() {
             initSoundEffects();
             init(); 
-            canvas.removeEventListener('click', initGame, false);
+            canvas.removeEventListener(playEvent, initGame, false);
         }, false);
     } catch(e) {
         log(e);
@@ -472,4 +473,18 @@ window.onload = () => {
 
 function log(message) {
     console.log(message);
+}
+
+function isiOS() {
+    const iOS1To12 = /iPad|iPhone|iPod/.test(navigator.platform);
+
+    const iOS13iPad = (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+    const iOS1To12quirk = function() {
+          const audio = new Audio(); // temporary Audio object
+          audio.volume = 0.5; // has no effect on iOS <= 12
+          return audio.volume === 1;
+    };
+
+    return !window.MSStream && (iOS1To12 || iOS13iPad || iOS1To12quirk());
 }
