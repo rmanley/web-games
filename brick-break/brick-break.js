@@ -161,9 +161,9 @@ function checkBrickCollisions(bricks, ball) {
 }
 
 function displayPlayButton(context, canvas) {
-    context.font = '32px Arial';
+    context.font = '32px "Press Start 2P"';
     context.fillStyle = 'white';
-    context.fillText('PLAY', canvas.width / 2 - 40, canvas.height / 2);
+    context.fillText('PLAY', canvas.width / 2 - 60, canvas.height / 2);
 }
 
 function displayHUD(context) { 

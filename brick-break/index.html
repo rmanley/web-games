@@ -2,22 +2,86 @@
 <html>
     <head>
         <title>Brick Break</title>
-        <style>
-            * { 
-                padding: 0; 
-                margin: 0; 
-                background-color: black;
-            }     
-
-            canvas { 
-                border: 2px solid blue;
-                display: block; 
-                margin: 0 auto; 
-            } 
-        </style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+        <link rel="stylesheet" href="brick-break.css">
     </head>
     <body>
         <canvas id="canvas" width="400" height="600"></canvas>
         <script src="brick-break.js"></script>
+        <button type="button" class="collapsible">Credits</button>
+        <footer class="content">
+            <div class="center">
+                <p>Created by <strong>Canaan Manley</strong></p>
+                <br>
+                <small>Music and Sound Effects from <a target="_blank" href="https://freesound.org/">freesound.org</a></small>
+            </div>
+            <p>Sound Effects:</p>
+            <ul class="tab">
+                <li>
+                    <a target="_blank" href="https://freesound.org/search/?q=PongBlip&f=grouping_pack:%22254_Pong%20softsynth%22%20&s=%22score%20desc%22&g=1&advanced=&a_tag=&a_filename=&a_description=&a_packname=&a_soundid=&a_username=">
+                        <cite>"Pong softsynth pack"</cite></a> 
+                    by 
+                    <a target="_blank" href="https://freesound.org/people/NoiseCollector/">
+                        NoiseCollector</a>
+                    is licensed under 
+                    <a target="_blank" href="https://creativecommons.org/licenses/by/3.0/">
+                        CC BY 3.0
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://freesound.org/people/TolerableDruid6/sounds/462189/">
+                        <cite>"8-Bit Atari 'Boom!'"</cite></a> 
+                    by 
+                    <a target="_blank" href="https://freesound.org/people/TolerableDruid6/">
+                        TolerableDruid6</a>
+                    is licensed under 
+                    <a target="_blank" href="https://creativecommons.org/publicdomain/zero/1.0/">
+                        CC0 1.0
+                    </a>
+                </li>
+            </ul>
+            <p>Music:</p>
+            <ul class="tab">
+                <li>
+                    <a target="_blank" href="https://freesound.org/people/Teacoma/sounds/431304/">
+                        <cite>"Lofi beat w. bass"</cite></a> 
+                    by 
+                    <a target="_blank" href="https://freesound.org/people/Teacoma/">
+                        Teacoma</a>
+                    is licensed under 
+                    <a target="_blank" href="https://creativecommons.org/publicdomain/zero/1.0/">
+                        CC0 1.0
+                    </a>
+                </li>
+            </ul>
+            <p>Font:</p>
+            <ul class="tab">
+                <li>
+                    <a target="_blank" href="https://fonts.google.com/specimen/Press+Start+2P#standard-styles">
+                        <cite>"Press Start 2P"</cite></a>
+                    by CodeMan38 from
+                    <a target="_blank" href="https://fonts.google.com/">Google Fonts</a>
+                    is licensed under
+                    <a target="_blank" href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL">OFL</a>
+                </li>
+            </ul>
+        </footer>
+
+        <script>
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+            
+            for (i = 0; i < coll.length; i++) {
+              coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                  content.style.display = "none";
+                } else {
+                  content.style.display = "block";
+                }
+              });
+            }
+            </script>
     </body>
 </html>
