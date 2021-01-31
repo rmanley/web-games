@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Web Games</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+        <style>
+            * {
+                padding: 0; 
+                margin: 0; 
+            }
+
+            #wrapper {
+                width: 80%;
+                margin: 2em auto 0 auto;
+                position: absolute;
+                padding: 2% 5% 10% 10%;
+                background-color: rgba(10,10,10,0.3);
+                font-family: 'Press Start 2P', cursive;
+                line-height: 1.8;
+                color: #fff;
+                top: 0; left: 0; right: 0;
+            }
+
+            body {
+                background-color: rgba(0,50,150,0.8);
+            }
+
+            canvas {
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas></canvas>
+        <div id="wrapper">
+            <h1>Web Games</h1>
+            <h2>Just a collection of simple JavaScript games.</h2>
+            <h4>Press any link to play</h4>
+            <ul>
+                <li>
+                    <a href="./brick-break/index.html">Brick Break</a>
+                </li>
+                <li>
+                    <a href="./snake/index.html">Snake</a>
+                </li>
+            </ul>
+        </div>
+        <script>
+            class Circle {
+                constructor(x, y, r, dx, dy) {
+                    this.x = x;
+                    this.y = y;
+                    this.r = r;
+                    this.dx = dx;
+                    this.dy = dy;
+                }
+                
+                draw(c) {
+                    c.beginPath();
+                    c.arc(this.x,this.y,this.r,0,Math.PI * 2, false);
+                    c.strokeStyle = "rgba(0,150,200,1)";
+                    c.stroke();
+                    c.fillStyle = "rgba(0,150,200,0.4)";
+                    c.fill();
+                }
+                
+                update() {
+                    if(this.x + this.r > innerWidth 
+                        || this.x - this.r < 0) {
+                        this.dx = -this.dx;
+                    }
+                    
+                    if(this.dy > 0) {
+                        this.dy = -this.dy;
+                    }
+                    
+                    this.x += this.dx;
+                    this.y += this.dy;
+                    
+                    if(this.y <= 0) {
+                        this.y = innerHeight;
+                    }
+                }
+            }
+
+
+            window.onload = function() {
+                const canvas = document.querySelector("canvas");
+
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                const ctx = canvas.getContext("2d");
+                
+                const circles = [];
+
+                for(let i = 0; i < 100; i++) {
+                    let r = Math.random() * 30,
+                        x = Math.random() * (innerWidth - r * 2) + r,
+                        y = Math.random() * (innerHeight - r * 2) + r,
+                        dx = (Math.random() - 0.5) * 2,
+                        dy = (Math.random() - 0.5) * 4;
+                        
+                    circles.push(new Circle(x, y, r, dx, dy));
+                }
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    ctx.clearRect(0,0,innerWidth,innerHeight);
+                    
+                    for (let i = 0; i < circles.length; i++) {
+                        circles[i].update();
+                        circles[i].draw(ctx)
+                    }
+                }
+                animate();
+            }
+        </script>
+    </body>
+</html>
