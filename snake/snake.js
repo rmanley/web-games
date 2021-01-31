@@ -162,6 +162,7 @@ function initControls(canvas, snake) {
         if (Direction.areOpposite(direction, snake.direction) || snake.isTurning) return;
         snake.direction = direction;
         snake.velocity = velocity;
+        event.preventDefault();
     };
     
     let touchStartPosition;
@@ -170,6 +171,7 @@ function initControls(canvas, snake) {
             event.touches[0].pageX - canvas.offsetLeft,
             event.touches[0].pageY - canvas.offsetTop
         );
+        event.preventDefault();
     };
     
     let touchEndPosition;
@@ -178,6 +180,7 @@ function initControls(canvas, snake) {
             event.touches[0].pageX - canvas.offsetLeft,
             event.touches[0].pageY - canvas.offsetTop
         );
+        event.preventDefault();
     };
     
     window.ontouchend = () => {

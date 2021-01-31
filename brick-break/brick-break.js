@@ -92,6 +92,7 @@ function initPaddleContols(paddle) {
     const onMouseMove = (event) => {
         let x = event.pageX;
         paddle.position.x = x - canvas.offsetLeft - paddle.width / 2;
+        event.preventDefault();
     };
     window.addEventListener('mousemove', onMouseMove, false);
     
@@ -103,6 +104,7 @@ function initPaddleContols(paddle) {
     window.ontouchmove = (event) => {
         let x = event.touches[0].pageX;
         paddle.position.x = x - canvas.offsetLeft - paddle.width / 2;
+        event.preventDefault();
     };
 }
 
